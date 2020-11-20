@@ -41,7 +41,7 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           port: ${{ secrets.PORT }}
           run: |
-            sudo docker login -u olagunju -p princeoflife430
-            sudo docker stop $(docker ps -a -q)
-            sudo docker pull olagunju/simple
-            sudo docker run -p 3000:8080 olagunju/simple
+            docker stop $(docker ps -a -q)
+            docker login -u olagunju -p princeoflife430
+            docker pull olagunju/simple
+            docker run -p 3000:8080 olagunju/simple
