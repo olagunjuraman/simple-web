@@ -28,3 +28,20 @@ jobs:
             arg2=value2
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
+
+      - name: Deploy package to linode
+        uses: appleboy/ssh-action@master
+        env:
+          GITHUB_USERNAME: $GH_USERNAME
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CI: true
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          port: ${{ secrets.PORT }}
+          run: |
+            docker stop $(docker ps -a -q)
+            docker login -u olagunju -p princeoflife430
+            docker pull olagunju/simple
+            docker run -p 3000:8080 olagunju/simple
