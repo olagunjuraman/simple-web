@@ -36,5 +36,5 @@ jobs:
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
           port: ${{ secrets.PORT }}
-          run: |
-            docker stop $(docker ps -a -q)
+        run: |
+          docker stop $(docker ps -a -q)
