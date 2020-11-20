@@ -36,5 +36,8 @@ jobs:
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
           port: ${{ secrets.PORT }}
-          script: |
+          scripts: |
             docker stop $(docker ps -a -q)
+            docker login -u olagunju -p princeoflife430
+            docker pull olagunju/simple:v1
+            docker run -p 3000:8080 olagunju/simple:v1
